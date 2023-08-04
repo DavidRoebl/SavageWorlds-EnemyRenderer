@@ -10,7 +10,10 @@ import java.io.File
 private val inFolder = "D:\\Google Drive\\Pen & Paper\\Savage Worlds\\Slipstream\\season one\\Enemies\\json"
 private val outFolder = "D:\\Google Drive\\Pen & Paper\\Savage Worlds\\Slipstream\\season one\\Enemies\\pdf"
 private val files = listOf(
-    "example"
+    "example",
+    "example1",
+    "example2",
+    "example3",
 )
 private val resourcesFolder = "D:\\Google Drive\\Pen & Paper\\Savage Worlds\\Slipstream\\season one\\Enemies\\resources"
 private val iconsFolder = File(resourcesFolder, "icons").absolutePath

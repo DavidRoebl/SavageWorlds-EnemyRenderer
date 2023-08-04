@@ -44,7 +44,7 @@ class PdfBoxRenderer : PdfRenderer {
                 stream.smallText(content = "Salvage", xPos = width - 15, yPos = 13f, align = RIGHT)
                 stream.text(content = enemy.salvage.pretty, xPos = width - 15, yPos = 24f, align = RIGHT)
 
-                stream.horizontalRule(-44f)
+                stream.horizontalRule(44f)
 
 
                 // column 1
@@ -104,8 +104,22 @@ class PdfBoxRenderer : PdfRenderer {
                     yOffset += SECTION_SPACE
                 }
 
+                stream.smallText("Wounds", xPos = 100f, yPos = height - 45f)
+                stream.rectangle(xPos = 100f, yPos = height - 33, width = 20f, height = 20f)
+                stream.text("-1", xPos = 104f, yPos = height - 31)
+                stream.rectangle(xPos = 120f, yPos = height - 33, width = 20f, height = 20f)
+                stream.text("-2", xPos = 124f, yPos = height - 31)
+                stream.rectangle(xPos = 140f, yPos = height - 33, width = 20f, height = 20f)
+                stream.text("-3", xPos = 144f, yPos = height - 31)
 
-                stream.rectangle(xPos = width - 200, yPos = height - 38, width = 10f, height = 10f)
+                stream.text("INC", xPos = 164f, yPos = height - 31)
+                stream.smallText("Fatigue", xPos = 229f, yPos = height - 45f, align = RIGHT)
+                stream.rectangle(xPos = 189f, yPos = height - 33, width = 20f, height = 20f)
+                stream.text("-2", xPos = 193f, yPos = height - 31)
+                stream.rectangle(xPos = 209f, yPos = height - 33, width = 20f, height = 20f)
+                stream.text("-1", xPos = 213f, yPos = height - 31)
+
+
 
                 stream.smallText(content = "Pace", xPos = width - 95, yPos = height - 38f, align = RIGHT)
                 stream.text(content = enemy.pace, xPos = width - 95, yPos = height - 27f, align = RIGHT)
@@ -131,7 +145,7 @@ class PdfBoxRenderer : PdfRenderer {
         setLeading(15f)
         newLineAtOffset(xPos, -1 * yPos - 12f)
         var overflows = 0
-        map.forEach { entry, annotation ->
+        map.forEach { (entry, annotation) ->
             val width = with(font) {
                 widthOf("$entry ", 12f) + widthOf(annotation, 9f)
             }
@@ -234,25 +248,18 @@ class PdfBoxRenderer : PdfRenderer {
     }
 
     private fun PDPageContentStream.rectangle(xPos: Float, yPos: Float, width: Float, height: Float) {
-        val _xPos = xPos * -1
-        moveTo(_xPos, yPos)
-        stroke()
-        lineTo(_xPos + width, yPos)
-        stroke()
-        lineTo(_xPos + width, yPos + height)
-        stroke()
-        lineTo(_xPos, yPos + height)
-        stroke()
-        lineTo(_xPos, yPos)
-        stroke()
+        line(xPos, yPos, xPos + width, yPos)
+        line(xPos + width, yPos, xPos + width, yPos + height)
+        line(xPos + width, yPos + height, xPos, yPos + height)
+        line(xPos, yPos + height, xPos, yPos)
     }
     private fun PDPageContentStream.horizontalRule(yPos: Float) {
         line(0f, yPos, width, yPos)
     }
 
     private fun PDPageContentStream.line(xFrom: Float, yFrom: Float, xTo: Float, yTo: Float) {
-        moveTo(xFrom, yFrom)
-        lineTo(xTo, yTo)
+        moveTo(xFrom, yFrom * -1)
+        lineTo(xTo, yTo * -1)
         stroke()
     }
 
