@@ -1,0 +1,49 @@
+{
+  "name": "Officer Ioptis",
+  "attributes": {
+    "agility": "D10",
+    "smarts": "D6",
+    "spirit": "D6",
+    "strength": "D8",
+    "vigor": "D6"
+  },
+  "skills": {
+    "Fight": "D8",
+    "Shoot": "D8",
+    "Notice": "D8",
+    "Intimidation": "D8",
+    "Stealth": "D8",
+    "Pilot": "D8",
+    "Repair": "D6",
+    "Taunt": "D8"
+  },
+  "pace": "6",
+  "parry": "7",
+  "toughness": "9(2)",
+  "equipment": [
+    "Spacesuit (+2)",
+    "Knife (STR + D4)",
+    "Sword (STR + D8)",
+    "Ray Gun Pistol (12/24/48, 2D6+1)",
+    "Rocket Belt (10/20)",
+    "Radio Phone"
+  ],
+  "isWildcard": true,
+  "salvage": "WORTHWHILE",
+  "hindrances": [
+    "Greedy",
+    "Mean",
+    "Wanted",
+    "-2 auf überreden"
+  ],
+  "edges": [
+    "Block (ignore 1 gang up)",
+    "Combat Reflexes (+2 Spirits to recover from Shaken)",
+    "One Man Crew",
+    "Slugger"
+  ],
+  "notes": [
+    "Crystalline Structure",
+    "Long Arms (Reach +1)"
+  ]
+}
