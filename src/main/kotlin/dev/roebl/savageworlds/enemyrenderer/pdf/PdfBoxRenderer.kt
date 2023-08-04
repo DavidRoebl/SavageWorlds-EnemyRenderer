@@ -30,6 +30,9 @@ class PdfBoxRenderer : PdfRenderer {
             PDPageContentStream(document, page).use { stream ->
                 val matrix = Matrix.getTranslateInstance(0f, height)
                 stream.transform(matrix)
+
+                stream.rectangle(0f, 0f, width, height)
+
                 if (enemy.isWildcard) {
                     val image = PDImageXObject.createFromFile(icWildcard, document)
                     stream.drawImage(image, 12f, -37f, 24f, 24f)
@@ -253,6 +256,7 @@ class PdfBoxRenderer : PdfRenderer {
         line(xPos + width, yPos + height, xPos, yPos + height)
         line(xPos, yPos + height, xPos, yPos)
     }
+
     private fun PDPageContentStream.horizontalRule(yPos: Float) {
         line(0f, yPos, width, yPos)
     }
