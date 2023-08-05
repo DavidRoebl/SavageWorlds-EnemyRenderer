@@ -22,7 +22,7 @@ private const val BODY_START = 52f
 private const val SECTION_SPACE = 10f
 
 class PdfBoxRenderer : PdfRenderer {
-    override fun render(enemy: Enemy, outFile: File, icWildcard: String) {
+    override fun render(enemy: Enemy, outFile: File, icWildcard: ByteArray) {
         PDDocument().use { document ->
             val page = PDPage(A6_LAND)
             document.addPage(page)
@@ -34,7 +34,7 @@ class PdfBoxRenderer : PdfRenderer {
                 stream.rectangle(0f, 0f, width, height)
 
                 if (enemy.isWildcard) {
-                    val image = PDImageXObject.createFromFile(icWildcard, document)
+                    val image = PDImageXObject.createFromByteArray(document, icWildcard, "wildcard")
                     stream.drawImage(image, 12f, -37f, 24f, 24f)
                 }
                 stream.text(

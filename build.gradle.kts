@@ -12,10 +12,10 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
-//    implementation("com.github.timrs2998:pdf-builder:1.10.0")
     implementation("org.apache.pdfbox:pdfbox:2.0.26")
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("org.apache.commons:commons-collections4:4.4")
+    implementation("com.github.ajalt.clikt:clikt:4.2.0")
 }
 
 tasks.test {

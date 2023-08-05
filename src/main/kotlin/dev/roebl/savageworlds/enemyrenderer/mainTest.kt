@@ -24,7 +24,7 @@ fun main(args: Array<String>) {
     val gson = GsonBuilder()
         .setPrettyPrinting()
         .create()
-    val icWildcard = File(iconsFolder, "wildcard.jpg").absolutePath
+    val icWildcard = File(iconsFolder, "wildcard.jpg").readBytes()
     val renderEngine = RenderFactory.get(RenderEngine.PDF_BOX)
 
     files.forEach { enemyFileName ->
