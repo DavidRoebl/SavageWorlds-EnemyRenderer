@@ -16,8 +16,6 @@ dependencies {
     implementation("org.apache.pdfbox:pdfbox:2.0.26")
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("org.apache.commons:commons-collections4:4.4")
-    implementation("com.github.librepdf:openpdf:1.3.30")
-    implementation("com.github.librepdf:openpdf-fonts-extra:1.3.30")
 }
 
 tasks.test {
