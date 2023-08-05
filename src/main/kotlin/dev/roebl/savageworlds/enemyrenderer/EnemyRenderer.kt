@@ -8,7 +8,7 @@ import com.github.ajalt.clikt.parameters.types.boolean
 import com.google.gson.Gson
 import com.google.gson.JsonIOException
 import com.google.gson.JsonSyntaxException
-import dev.roebl.savageworlds.enemyrenderer.exceptions.InputException
+import dev.roebl.savageworlds.enemyrenderer.cli.InputException
 import dev.roebl.savageworlds.enemyrenderer.model.Enemy
 import dev.roebl.savageworlds.enemyrenderer.pdf.RenderEngine
 import dev.roebl.savageworlds.enemyrenderer.pdf.RenderFactory
@@ -45,7 +45,7 @@ class EnemyRenderer : CliktCommand(
 
         files.forEach { rawFileName ->
             val enemyFileName = rawFileName.removeSuffix(".json")
-            if(enemyFileName.isBlank()) {
+            if (enemyFileName.isBlank()) {
                 return@forEach // do not process
             }
 
@@ -83,10 +83,12 @@ class EnemyRenderer : CliktCommand(
 
         println("Finished successfully.")
     } catch (t: Throwable) {
-        println("""
+        println(
+            """
             Unable to process enemies to PDFs
             Cause: ${t.message}
-        """.trimIndent())
+        """.trimIndent()
+        )
     }
 
     private val timestamp: String
@@ -95,6 +97,7 @@ class EnemyRenderer : CliktCommand(
 }
 
 fun main(args: Array<String>) = EnemyRenderer().main(args)
+
 
 /*
 --input-dir "D:\Google Drive\Pen & Paper\Savage Worlds\Slipstream\season one\Enemies\json"

@@ -1,8 +1,10 @@
 plugins {
+    java
     kotlin("jvm") version "1.9.0"
+    application
 }
 
-group = "org.example"
+group = "dev.roebl.savageworlds"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -17,6 +19,11 @@ dependencies {
     implementation("org.apache.commons:commons-collections4:4.4")
     implementation("com.github.ajalt.clikt:clikt:4.2.0")
 }
+
+application {
+    mainClass.set("dev.roebl.savageworlds.enemyrenderer.EnemyRendererKt")
+}
+
 
 tasks.test {
     useJUnitPlatform()

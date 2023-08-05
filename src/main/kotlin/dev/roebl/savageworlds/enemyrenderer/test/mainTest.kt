@@ -1,4 +1,4 @@
-package dev.roebl.savageworlds.enemyrenderer
+package dev.roebl.savageworlds.enemyrenderer.test
 
 import com.google.gson.GsonBuilder
 import dev.roebl.savageworlds.enemyrenderer.model.Enemy
