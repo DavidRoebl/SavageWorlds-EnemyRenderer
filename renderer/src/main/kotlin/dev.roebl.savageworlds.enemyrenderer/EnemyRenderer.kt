@@ -104,4 +104,8 @@ fun main(args: Array<String>) = EnemyRenderer().main(args)
 --selector-file "D:\Google Drive\Pen & Paper\Savage Worlds\Slipstream\season one\Enemies\resources\toProcess.list"
 --output-dir "D:\Google Drive\Pen & Paper\Savage Worlds\Slipstream\season one\Enemies\pdf"
 --merge-output false
+
+
+`
+--input-dir "D:\Google Drive\Pen & Paper\Savage Worlds\Slipstream\season one\Enemies\json" --selector-file "D:\Google Drive\Pen & Paper\Savage Worlds\Slipstream\season one\Enemies\resources\toProcess.list" --output-dir "D:\Google Drive\Pen & Paper\Savage Worlds\Slipstream\season one\Enemies\pdf" --merge-output false
  */

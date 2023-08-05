@@ -10,3 +10,4 @@ plugins {
 }
 
 rootProject.name = "sw-enemyrenderer"
+include("renderer")

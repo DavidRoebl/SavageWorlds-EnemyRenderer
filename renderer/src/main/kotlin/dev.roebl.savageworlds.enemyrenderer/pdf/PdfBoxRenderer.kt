@@ -13,9 +13,9 @@ import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject
 import org.apache.pdfbox.util.Matrix
 import java.io.File
 
-val height = PDRectangle.A6.width
-val width = PDRectangle.A6.height
-val A6_LAND = PDRectangle(width, height)
+private val height = PDRectangle.A6.width
+private val width = PDRectangle.A6.height
+private val A6_LAND = PDRectangle(width, height)
 private const val HANGING_INDENT = "    "
 
 private const val BODY_START = 52f

@@ -45,4 +45,4 @@ fun main(args: Array<String>) {
     merger.mergeDocuments(MemoryUsageSetting.setupMainMemoryOnly())
 }
 
-    fun color(alpha: Int = 0xFF, red: Int = 0, green: Int = 0, blue: Int = 0): Color = Color(red, green, blue, alpha)
+fun color(alpha: Int = 0xFF, red: Int = 0, green: Int = 0, blue: Int = 0): Color = Color(red, green, blue, alpha)
