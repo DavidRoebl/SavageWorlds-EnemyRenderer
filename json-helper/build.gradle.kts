@@ -13,16 +13,11 @@ repositories {
 }
 
 dependencies {
-    implementation(libs.pdfbox)
     implementation(libs.gson)
-    implementation(libs.collections4)
-    implementation(libs.clikt)
-
-    implementation(project(":commons"))
 }
 
 application {
-    mainClass.set("dev.roebl.savageworlds.enemyrenderer.EnemyRendererKt")
+//    mainClass.set("dev.roebl.savageworlds.enemyrenderer.EnemyRendererKt")
 }
 
 kotlin {
