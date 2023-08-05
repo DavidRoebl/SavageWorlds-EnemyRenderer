@@ -10,9 +10,9 @@ data class Enemy(
     val pace: String,
     val parry: String,
     val toughness: String,
-    val gear: Map<String, String>,
+    val gear: Map<String, String>, // TODO: allow Array<String> as values
     val salvage: Salvage,
-    val specialAbilities: Map<String, String>
+    val specialAbilities: Map<String, String> // TODO: allow Array<String> as values
 ) {
     val sortedSkills: Map<String, Die>
         get() = skills.toSortedMap(baseSkillsFirst andThen byNaturalOrder)

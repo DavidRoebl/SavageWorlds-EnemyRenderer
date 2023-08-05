@@ -87,25 +87,53 @@ class PdfBoxRenderer : PdfRenderer {
                 xOffset = 210f
                 if (enemy.specialAbilities.isNotEmpty()) {
                     yOffset += stream.smallText("Special Abilities", xPos = xOffset, yPos = yOffset)
-                    yOffset += stream.annotatedList(enemy.specialAbilities, xPos = xOffset, yPos = yOffset, maxWidth = width-210f)
+                    yOffset += stream.annotatedList(
+                        enemy.specialAbilities,
+                        xPos = xOffset,
+                        yPos = yOffset,
+                        maxWidth = width - 210f
+                    )
                     yOffset += SECTION_SPACE
                 }
 
-                stream.smallText("Wounds", xPos = 100f, yPos = height - 45f)
-                stream.rectangle(xPos = 100f, yPos = height - 33, width = 20f, height = 20f)
-                stream.text("-1", xPos = 104f, yPos = height - 31)
-                stream.rectangle(xPos = 120f, yPos = height - 33, width = 20f, height = 20f)
-                stream.text("-2", xPos = 124f, yPos = height - 31)
-                stream.rectangle(xPos = 140f, yPos = height - 33, width = 20f, height = 20f)
-                stream.text("-3", xPos = 144f, yPos = height - 31)
+                if (enemy.isWildcard) {
+                    stream.smallText("Wounds", xPos = 100f, yPos = height - 45f)
+                    stream.rectangle(xPos = 100f, yPos = height - 33, width = 20f, height = 20f, thickness = 0.3f)
+                    stream.text("-1", xPos = 104f, yPos = height - 31, intensity = 0.3f)
+                    stream.rectangle(xPos = 120f, yPos = height - 33, width = 20f, height = 20f, thickness = 0.3f)
+                    stream.text("-2", xPos = 124f, yPos = height - 31, intensity = 0.3f)
+                    stream.rectangle(xPos = 140f, yPos = height - 33, width = 20f, height = 20f, thickness = 0.3f)
+                    stream.text("-3", xPos = 144f, yPos = height - 31, intensity = 0.3f)
 
-                stream.text("INC", xPos = 164f, yPos = height - 31)
-                stream.smallText("Fatigue", xPos = 229f, yPos = height - 45f, align = RIGHT)
-                stream.rectangle(xPos = 189f, yPos = height - 33, width = 20f, height = 20f)
-                stream.text("-2", xPos = 193f, yPos = height - 31)
-                stream.rectangle(xPos = 209f, yPos = height - 33, width = 20f, height = 20f)
-                stream.text("-1", xPos = 213f, yPos = height - 31)
-
+                    stream.text("INC", xPos = 164f, yPos = height - 31)
+                    stream.smallText("Fatigue", xPos = 229f, yPos = height - 45f, align = RIGHT)
+                    stream.rectangle(xPos = 189f, yPos = height - 33, width = 20f, height = 20f, thickness = 0.3f)
+                    stream.text("-2", xPos = 193f, yPos = height - 31, intensity = 0.3f)
+                    stream.rectangle(xPos = 209f, yPos = height - 33, width = 20f, height = 20f, thickness = 0.3f)
+                    stream.text("-1", xPos = 213f, yPos = height - 31, intensity = 0.3f)
+                } else {
+                    stream.smallText("Wounds, etc", xPos = 100f, yPos = height - 45f)
+                    stream.rectangle(xPos = 100f, yPos = height - 33, width = 20f, height = 20f, thickness = 0.3f)
+                    stream.text("1", xPos = 106f, yPos = height - 31, intensity = 0.3f)
+                    stream.rectangle(xPos = 120f, yPos = height - 33, width = 20f, height = 20f, thickness = 0.3f)
+                    stream.text("2", xPos = 126f, yPos = height - 31, intensity = 0.3f)
+                    stream.rectangle(xPos = 140f, yPos = height - 33, width = 20f, height = 20f, thickness = 0.3f)
+                    stream.text("3", xPos = 146f, yPos = height - 31, intensity = 0.3f)
+                    stream.rectangle(xPos = 160f, yPos = height - 33, width = 20f, height = 20f, thickness = 0.3f)
+                    stream.text("4", xPos = 166f, yPos = height - 31, intensity = 0.3f)
+                    stream.rectangle(xPos = 180f, yPos = height - 33, width = 20f, height = 20f, thickness = 0.3f)
+                    stream.text("5", xPos = 186f, yPos = height - 31, intensity = 0.3f)
+                    stream.rectangle(xPos = 200f, yPos = height - 33, width = 20f, height = 20f, thickness = 0.3f)
+                    stream.text("6", xPos = 206f, yPos = height - 31, intensity = 0.3f)
+                    stream.rectangle(xPos = 220f, yPos = height - 33, width = 20f, height = 20f, thickness = 0.3f)
+                    stream.text("7", xPos = 226f, yPos = height - 31, intensity = 0.3f)
+                    stream.rectangle(xPos = 240f, yPos = height - 33, width = 20f, height = 20f, thickness = 0.3f)
+                    stream.text("8", xPos = 246f, yPos = height - 31, intensity = 0.3f)
+                    stream.rectangle(xPos = 260f, yPos = height - 33, width = 20f, height = 20f, thickness = 0.3f)
+                    stream.text("9", xPos = 266f, yPos = height - 31, intensity = 0.3f)
+                    stream.rectangle(xPos = 280f, yPos = height - 33, width = 20f, height = 20f, thickness = 0.3f)
+                    stream.text("10", xPos = 283f, yPos = height - 31, intensity = 0.3f)
+                }
 
 
                 stream.smallText(content = "Pace", xPos = width - 95, yPos = height - 38f, align = RIGHT)
@@ -194,6 +222,7 @@ class PdfBoxRenderer : PdfRenderer {
     private fun PDPageContentStream.smallText(
         content: String,
         align: Align = LEFT,
+        intensity: Float = 1f,
         xPos: Float,
         yPos: Float
     ): Float {
@@ -206,6 +235,7 @@ class PdfBoxRenderer : PdfRenderer {
         lineSpace: Float = 2f,
         isBold: Boolean = false,
         align: Align = LEFT,
+        intensity: Float = 1f,
         xPos: Float,
         yPos: Float
     ): Float {
@@ -224,28 +254,37 @@ class PdfBoxRenderer : PdfRenderer {
         }
         beginText()
         setFont(font, textSize)
+        setNonStrokingColor(1 - intensity, 1 - intensity, 1 - intensity)
         newLineAtOffset(_xPos, _yPos)
         setLeading(textSize + lineSpace)
         strings.forEach {
             showText(it)
             newLine()
         }
+        setNonStrokingColor(0f, 0f, 0f)
         endText()
         return strings.size * (textSize + lineSpace)
     }
 
-    private fun PDPageContentStream.rectangle(xPos: Float, yPos: Float, width: Float, height: Float) {
-        line(xPos, yPos, xPos + width, yPos)
-        line(xPos + width, yPos, xPos + width, yPos + height)
-        line(xPos + width, yPos + height, xPos, yPos + height)
-        line(xPos, yPos + height, xPos, yPos)
+    private fun PDPageContentStream.rectangle(
+        xPos: Float,
+        yPos: Float,
+        width: Float,
+        height: Float,
+        thickness: Float = 1f
+    ) {
+        line(xPos, yPos, xPos + width, yPos, thickness)
+        line(xPos + width, yPos, xPos + width, yPos + height, thickness)
+        line(xPos + width, yPos + height, xPos, yPos + height, thickness)
+        line(xPos, yPos + height, xPos, yPos, thickness)
     }
 
-    private fun PDPageContentStream.horizontalRule(yPos: Float) {
-        line(0f, yPos, width, yPos)
+    private fun PDPageContentStream.horizontalRule(yPos: Float, intensity: Float = 1f) {
+        line(0f, yPos, width, yPos, intensity)
     }
 
-    private fun PDPageContentStream.line(xFrom: Float, yFrom: Float, xTo: Float, yTo: Float) {
+    private fun PDPageContentStream.line(xFrom: Float, yFrom: Float, xTo: Float, yTo: Float, thickness: Float = 1f) {
+        setLineWidth(thickness)
         moveTo(xFrom, yFrom * -1)
         lineTo(xTo, yTo * -1)
         stroke()
