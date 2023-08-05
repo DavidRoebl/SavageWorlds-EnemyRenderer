@@ -89,6 +89,7 @@ class EnemyRenderer : CliktCommand(
             Cause: ${t.message}
         """.trimIndent()
         )
+        throw t
     }
 
     private val timestamp: String

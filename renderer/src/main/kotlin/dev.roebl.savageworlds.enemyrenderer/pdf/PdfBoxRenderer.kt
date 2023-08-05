@@ -76,34 +76,18 @@ class PdfBoxRenderer : PdfRenderer {
                 // column 2
                 yOffset = BODY_START
                 xOffset = 100f
-                if (enemy.equipment.isNotEmpty()) {
-                    yOffset += stream.smallText("Equipment", xPos = xOffset, yPos = yOffset)
-                    yOffset += stream.annotatedList(enemy.equipment, xPos = xOffset, yPos = yOffset)
-                    yOffset += SECTION_SPACE
-                }
-
-                if (enemy.powers.isNotEmpty()) {
-                    yOffset += stream.smallText("Powers", xPos = xOffset, yPos = yOffset)
-                    yOffset += stream.annotatedList(enemy.powers, xPos = xOffset, yPos = yOffset)
+                if (enemy.gear.isNotEmpty()) {
+                    yOffset += stream.smallText("Gear", xPos = xOffset, yPos = yOffset)
+                    yOffset += stream.annotatedList(enemy.gear, xPos = xOffset, yPos = yOffset, maxWidth = 100f)
                     yOffset += SECTION_SPACE
                 }
 
                 // column 3
                 yOffset = BODY_START
-                xOffset = width - 160
-                if (enemy.hindrances.isNotEmpty()) {
-                    yOffset += stream.smallText("Hindrances", xPos = xOffset, yPos = yOffset)
-                    yOffset += stream.annotatedList(enemy.hindrances, xPos = xOffset, yPos = yOffset)
-                    yOffset += SECTION_SPACE
-                }
-                if (enemy.edges.isNotEmpty()) {
-                    yOffset += stream.smallText("Edges", xPos = xOffset, yPos = yOffset)
-                    yOffset += stream.annotatedList(enemy.edges, xPos = xOffset, yPos = yOffset)
-                    yOffset += SECTION_SPACE
-                }
-                if (enemy.notes.isNotEmpty()) {
-                    yOffset += stream.smallText("Notes", xPos = xOffset, yPos = yOffset)
-                    yOffset += stream.annotatedList(enemy.notes, xPos = xOffset, yPos = yOffset)
+                xOffset = 210f
+                if (enemy.specialAbilities.isNotEmpty()) {
+                    yOffset += stream.smallText("Special Abilities", xPos = xOffset, yPos = yOffset)
+                    yOffset += stream.annotatedList(enemy.specialAbilities, xPos = xOffset, yPos = yOffset, maxWidth = width-210f)
                     yOffset += SECTION_SPACE
                 }
 

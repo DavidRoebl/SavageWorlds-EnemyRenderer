@@ -1,49 +1,40 @@
 {
-  "name": "Officer Ioptis",
+  "name": "Primal Officer",
+  "isWildcard": true,
   "attributes": {
-    "agility": "D10",
+    "agility": "D6",
     "smarts": "D6",
-    "spirit": "D6",
-    "strength": "D8",
-    "vigor": "D6"
+    "spirit": "D8",
+    "strength": "D10",
+    "vigor": "D10"
   },
   "skills": {
-    "Fight": "D8",
-    "Shoot": "D8",
-    "Notice": "D8",
-    "Intimidation": "D8",
-    "Stealth": "D8",
-    "Pilot": "D8",
-    "Repair": "D6",
-    "Taunt": "D8"
+    "Climb" : "D6",
+    "Fight" : "D10",
+    "Intim" : "D8",
+    "Notice" : "D8",
+    "Shoot" : "D10",
+    "Stealth" : "D8"
   },
   "pace": "6",
   "parry": "7",
-  "toughness": "9(2)",
-  "equipment": [
-    "Spacesuit (+2)",
-    "Knife (STR + D4)",
-    "Sword (STR + D8)",
-    "Ray Gun Pistol (12/24/48, 2D6+1)",
-    "Rocket Belt (10/20)",
-    "Radio Phone"
-  ],
-  "isWildcard": true,
-  "salvage": "WORTHWHILE",
-  "hindrances": [
-    "Greedy",
-    "Mean",
-    "Wanted",
-    "-2 auf überreden"
-  ],
-  "edges": [
-    "Block (ignore 1 gang up)",
-    "Combat Reflexes (+2 Spirits to recover from Shaken)",
-    "One Man Crew",
-    "Slugger"
-  ],
-  "notes": [
-    "Crystalline Structure",
-    "Long Arms (Reach +1)"
-  ]
+  "toughness": "11 (3)",
+  "gear": {
+    "Corselet": "(+3)",
+    "Ray Gun Pistol": "(12/24/48, 2D6+1)",
+    "2 Magazines": "",
+    "Sword": "STR+D8",
+    "Magnetic Clamps": ""
+  },
+  "salvage": "NONE",
+  "specialAbilities": {
+    "Combat Reflexes": "+2 to Spirit rolls whenn attempting to recover from being Shaken",
+    "Command": "Those under the primal officer's command add +1 to their Spirit rolls to recover from being Shaken",
+    "Fanatic": "Primal offices are loyal to Anathraxa and her Handmaidens. If there is a primal officer within 1\" of Anathraxa or a Handmaiden, all attacks are made against the primal instead as he leaps in the way of ray guns or swords. This is not the Guardian Edge, and the primal receives no benny for this action.",
+    "Frevor": "Those under the officer's command add +1 to their Fighting damage rolls",
+    "Low Light Vision": "Primals ignore penalties for Dim and Dark lighting",
+    "Size +1": "Primal officers average 7 feet in height and weigh 300 pounds",
+    "Slipstream Adjusted": "Suffer no penalty from operating in space",
+    "Unbreakable Will": "Primal officers cannot be turned from Anathraxa's cause. They receive +4 to resist attempts to reveal infromation about the Queen, including Psionic powers."
+  }
 }
