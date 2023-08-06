@@ -10,8 +10,7 @@ import com.google.gson.JsonIOException
 import com.google.gson.JsonSyntaxException
 import dev.roebl.savageworlds.enemyrenderer.cli.InputException
 import dev.roebl.savageworlds.enemyrenderer.model.Enemy
-import dev.roebl.savageworlds.enemyrenderer.pdf.RenderEngine
-import dev.roebl.savageworlds.enemyrenderer.pdf.RenderFactory
+import dev.roebl.savageworlds.enemyrenderer.pdf.PdfRenderer
 import org.apache.pdfbox.io.MemoryUsageSetting
 import org.apache.pdfbox.multipdf.PDFMergerUtility
 import java.io.File
@@ -40,7 +39,6 @@ class EnemyRenderer : CliktCommand(
             throw InputException("Cannot open selector file at path '$selectorFile'", e)
         }
 
-        val renderEngine = RenderFactory.get(RenderEngine.PDF_BOX)
         val gson = Gson()
 
         files.forEach { rawFileName ->
@@ -66,7 +64,7 @@ class EnemyRenderer : CliktCommand(
             }
 
             val outFile = File(outputDir, "$enemyFileName.pdf")
-            renderEngine.render(enemy, outFile, icWildcard)
+            PdfRenderer(enemy, icWildcard).renderTo(outFile)
             println("Rendered $enemyFileName.")
         }
 

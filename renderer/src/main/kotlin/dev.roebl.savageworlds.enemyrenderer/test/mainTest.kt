@@ -2,8 +2,7 @@ package dev.roebl.savageworlds.enemyrenderer.test
 
 import com.google.gson.GsonBuilder
 import dev.roebl.savageworlds.enemyrenderer.model.Enemy
-import dev.roebl.savageworlds.enemyrenderer.pdf.RenderEngine
-import dev.roebl.savageworlds.enemyrenderer.pdf.RenderFactory
+import dev.roebl.savageworlds.enemyrenderer.pdf.PdfRenderer
 import org.apache.pdfbox.io.MemoryUsageSetting
 import org.apache.pdfbox.multipdf.PDFMergerUtility
 import java.awt.Color
@@ -25,7 +24,6 @@ fun main(args: Array<String>) {
         .setPrettyPrinting()
         .create()
     val icWildcard = File(iconsFolder, "wildcard.jpg").readBytes()
-    val renderEngine = RenderFactory.get(RenderEngine.PDF_BOX)
 
     files.forEach { enemyFileName ->
         val file = File(inFolder, "$enemyFileName.json")
@@ -34,7 +32,7 @@ fun main(args: Array<String>) {
         println(enemy)
 
         val outFile = File(outFolder, "$enemyFileName.pdf")
-        renderEngine.render(enemy, outFile, icWildcard)
+        PdfRenderer(enemy, icWildcard).renderTo(outFile)
     }
 
     val merger = PDFMergerUtility()
