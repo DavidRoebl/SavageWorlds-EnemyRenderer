@@ -115,9 +115,10 @@ class PdfRenderer(
     private fun printSpecialAbilities(stream: PDPageContentStream, xOffset: Float) {
         var yOffset = BODY_START
         if (enemy.specialAbilities.isNotEmpty()) {
+            val sortedAbilities = enemy.specialAbilities.toSortedMap()
             yOffset += stream.smallText("Special Abilities", xPos = xOffset, yPos = yOffset)
             yOffset += stream.annotatedList(
-                enemy.specialAbilities,
+                sortedAbilities,
                 xPos = xOffset,
                 yPos = yOffset,
                 maxWidth = width - 210f - 15f

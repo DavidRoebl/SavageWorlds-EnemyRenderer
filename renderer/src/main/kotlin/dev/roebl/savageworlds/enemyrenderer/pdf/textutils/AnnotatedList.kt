@@ -1,9 +1,7 @@
 package dev.roebl.savageworlds.enemyrenderer.pdf.textutils
 
-import dev.roebl.savageworlds.enemyrenderer.pdf.lineutils.line
 import org.apache.pdfbox.pdmodel.PDPageContentStream
 import org.apache.pdfbox.pdmodel.font.PDType1Font
-import kotlin.math.max
 import kotlin.math.min
 
 fun PDPageContentStream.annotatedList(
@@ -84,7 +82,7 @@ private fun PDPageContentStream.listEntry(
             startIndex = startIndex,
             indent = "  "
         )
-        if(lineSize == 0) {
+        if (lineSize == 0) {
             break
         }
         val line = annotationList.copyOfRange(startIndex, startIndex + lineSize).recombine().prependIndent("  ")
