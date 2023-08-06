@@ -120,7 +120,7 @@ class PdfRenderer(
                 enemy.specialAbilities,
                 xPos = xOffset,
                 yPos = yOffset,
-                maxWidth = width - 210f
+                maxWidth = width - 210f - 15f
             )
             yOffset += SECTION_SPACE
         }
