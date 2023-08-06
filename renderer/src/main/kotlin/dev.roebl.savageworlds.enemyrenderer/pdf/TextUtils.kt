@@ -1,50 +1,8 @@
 package dev.roebl.savageworlds.enemyrenderer.pdf
 
-import dev.roebl.savageworlds.enemyrenderer.model.Die
-import dev.roebl.savageworlds.enemyrenderer.pdf.Settings.hangingIntent
-import dev.roebl.savageworlds.enemyrenderer.pdf.Settings.pageWidth
 import org.apache.pdfbox.pdmodel.PDPageContentStream
 import org.apache.pdfbox.pdmodel.font.PDType1Font
 
-object Settings {
-    var hangingIntent: String = "    "
-    var pageWidth: Float = 0f
-    var pageHeight: Float = 0f
-}
-
-
-fun PDPageContentStream.boxes(
-    contents: Array<String>,
-    yPos: Float,
-    xPos: Float,
-    boxSize: Float = 20f,
-    lineThickness: Float = 0.3f,
-    textIntensity: Float = 0.3f,
-    verticalTextOffset: Float = 2f,
-    textAlign: Align = Align.CENTER
-) {
-
-    contents.forEachIndexed { index, value ->
-        rectangle(
-            xPos = xPos + boxSize * index,
-            yPos = yPos,
-            width = boxSize,
-            height = boxSize,
-            thickness = lineThickness
-        )
-        text(
-            value,
-            xPos = xPos + boxSize * (index + 0.5f),
-            yPos = yPos + verticalTextOffset,
-            intensity = textIntensity,
-            align = textAlign
-        )
-    }
-
-    for (i in 0..9) {
-
-    }
-}
 
 fun PDPageContentStream.annotatedList(
     map: Map<String, String>,
@@ -52,7 +10,6 @@ fun PDPageContentStream.annotatedList(
     xPos: Float,
     maxWidth: Float = 150f
 ): Float {
-
     val font = font()
     beginText()
     setLeading(15f)
@@ -81,8 +38,8 @@ fun PDPageContentStream.annotatedList(
     return map.size * 14f + overflows * 10f
 }
 
-fun PDPageContentStream.dieMap(
-    map: Map<String, Die>,
+fun PDPageContentStream.map(
+    map: Map<String, Any>,
     isBold: Boolean = false,
     textSize: Float = 12f,
     textSize2: Float = 12f,
@@ -104,7 +61,7 @@ fun PDPageContentStream.dieMap(
             isBold = isBold
         )
         text(
-            content = value.name,
+            content = value.toString(),
             xPos = xPos2,
             yPos = _yPos,
             align = Align.LEFT,
@@ -124,7 +81,16 @@ fun PDPageContentStream.smallText(
     xPos: Float,
     yPos: Float
 ): Float {
-    return text(content, textSize = 9f, isBold = true, lineSpace = 2f, align = align, xPos = xPos, yPos = yPos)
+    return text(
+        content,
+        textSize = 9f,
+        isBold = true,
+        lineSpace = 2f,
+        align = align,
+        xPos = xPos,
+        yPos = yPos,
+        intensity = intensity
+    )
 }
 
 fun PDPageContentStream.text(
@@ -141,7 +107,7 @@ fun PDPageContentStream.text(
         if (index == 0) {
             it
         } else {
-            it.prependIndent(hangingIntent)
+            it.prependIndent(Settings.hangingIntent)
         }
     }
     val font = font(isBold)
@@ -165,31 +131,6 @@ fun PDPageContentStream.text(
     return strings.size * (textSize + lineSpace)
 }
 
-fun PDPageContentStream.rectangle(
-    xPos: Float,
-    yPos: Float,
-    width: Float,
-    height: Float,
-    thickness: Float = 1f
-) {
-    line(xPos, yPos, xPos + width, yPos, thickness)
-    line(xPos + width, yPos, xPos + width, yPos + height, thickness)
-    line(xPos + width, yPos + height, xPos, yPos + height, thickness)
-    line(xPos, yPos + height, xPos, yPos, thickness)
-}
-
-fun PDPageContentStream.horizontalRule(yPos: Float, intensity: Float = 1f) {
-    line(0f, yPos, pageWidth, yPos, intensity)
-}
-
-fun PDPageContentStream.line(xFrom: Float, yFrom: Float, xTo: Float, yTo: Float, thickness: Float = 1f) {
-    setLineWidth(thickness)
-    moveTo(xFrom, yFrom * -1)
-    lineTo(xTo, yTo * -1)
-    stroke()
-}
-
-
 private fun PDType1Font.widthOf(text: String, fontSize: Float): Float {
     return getStringWidth(text) / 1000.0f * fontSize
 }
@@ -198,4 +139,5 @@ private fun String.capitalize(): String {
     return replaceFirstChar { it.uppercaseChar() }
 }
 
-private fun font(isBold: Boolean = false): PDType1Font = if (isBold) PDType1Font.HELVETICA_BOLD else PDType1Font.HELVETICA
+private fun font(isBold: Boolean = false): PDType1Font =
+    if (isBold) PDType1Font.HELVETICA_BOLD else PDType1Font.HELVETICA

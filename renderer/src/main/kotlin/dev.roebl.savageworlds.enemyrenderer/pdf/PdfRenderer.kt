@@ -76,7 +76,7 @@ class PdfRenderer(
     private fun printAttributesSkills(stream: PDPageContentStream, xOffset: Float) {
         var yOffset = BODY_START
         yOffset += stream.smallText("Attributes", xPos = xOffset, yPos = yOffset)
-        yOffset += stream.dieMap(
+        yOffset += stream.map(
             enemy.attributes.asMap(),
             xPos1 = xOffset,
             xPos2 = xOffset + 50,
@@ -86,7 +86,7 @@ class PdfRenderer(
 
         if (enemy.skills.isNotEmpty()) {
             yOffset += stream.smallText("Skills", xPos = xOffset, yPos = yOffset)
-            yOffset += stream.dieMap(
+            yOffset += stream.map(
                 enemy.sortedSkills,
                 xPos1 = xOffset,
                 xPos2 = xOffset + 50,
