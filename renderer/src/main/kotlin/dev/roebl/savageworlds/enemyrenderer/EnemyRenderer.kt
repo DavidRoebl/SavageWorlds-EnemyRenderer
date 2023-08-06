@@ -15,7 +15,6 @@ import org.apache.pdfbox.io.MemoryUsageSetting
 import org.apache.pdfbox.multipdf.PDFMergerUtility
 import java.io.File
 import java.io.IOException
-import java.time.OffsetDateTime
 
 
 class EnemyRenderer : CliktCommand(
@@ -70,7 +69,7 @@ class EnemyRenderer : CliktCommand(
 
         if (mergeOutput) {
             val merger = PDFMergerUtility()
-            val mergeFile = "merged-$timestamp.pdf"
+            val mergeFile = "merged.pdf"
             merger.destinationFileName = File(outputDir, mergeFile).absolutePath
             merger.addSources(
                 files.map { File(outputDir, "$it.pdf").inputStream() }
@@ -89,10 +88,6 @@ class EnemyRenderer : CliktCommand(
         )
         throw t
     }
-
-    private val timestamp: String
-        get() = OffsetDateTime.now().toString()
-
 }
 
 fun main(args: Array<String>) = EnemyRenderer().main(args)
