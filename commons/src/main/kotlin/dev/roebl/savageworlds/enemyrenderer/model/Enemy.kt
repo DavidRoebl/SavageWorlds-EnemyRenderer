@@ -6,7 +6,7 @@ data class Enemy(
     val name: String,
     val isWildcard: Boolean,
     val attributes: Attributes,
-    val skills: CaseInsensitiveMap<String, Die>,
+    val skills: CaseInsensitiveMap<String, ModifiedDie>,
     val pace: String,
     val parry: String,
     val toughness: String,
@@ -14,7 +14,7 @@ data class Enemy(
     val salvage: Salvage,
     val specialAbilities: Map<String, String> // TODO: allow Array<String> as values
 ) {
-    val sortedSkills: Map<String, Die>
+    val sortedSkills: Map<String, ModifiedDie>
         get() = skills.toSortedMap(baseSkillsFirst andThen byNaturalOrder)
 }
 

@@ -6,10 +6,12 @@ import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.options.prompt
 import com.github.ajalt.clikt.parameters.types.boolean
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.google.gson.JsonIOException
 import com.google.gson.JsonSyntaxException
 import dev.roebl.savageworlds.enemyrenderer.cli.InputException
 import dev.roebl.savageworlds.enemyrenderer.model.Enemy
+import dev.roebl.savageworlds.enemyrenderer.model.ModifiedDie
 import dev.roebl.savageworlds.enemyrenderer.pdf.PdfRenderer
 import org.apache.pdfbox.io.MemoryUsageSetting
 import org.apache.pdfbox.multipdf.PDFMergerUtility
@@ -38,7 +40,9 @@ class EnemyRenderer : CliktCommand(
             throw InputException("Cannot open selector file at path '$selectorFile'", e)
         }
 
-        val gson = Gson()
+        val gson = GsonBuilder()
+            .registerTypeAdapter(ModifiedDie::class.java, ModifiedDie.Serializer())
+            .create()
 
         files.forEach { rawFileName ->
             val enemyFileName = rawFileName.removeSuffix(".json")

@@ -1,13 +1,47 @@
 package dev.roebl.savageworlds.enemyrenderer.model
 
+import com.google.gson.JsonDeserializationContext
+import com.google.gson.JsonDeserializer
+import com.google.gson.JsonElement
+import com.google.gson.JsonPrimitive
+import com.google.gson.JsonSerializationContext
+import com.google.gson.JsonSerializer
+import java.lang.reflect.Type
+
 enum class Die {
     D4,
     D6,
     D8,
     D10,
-    D12,
-    D12_1,
-    D12_2,
-    D12_3,
-    D12_4
+    D12
+}
+
+class ModifiedDie(
+    val die: Die,
+    val modifier: String
+) {
+    class Serializer : JsonSerializer<ModifiedDie>, JsonDeserializer<ModifiedDie> {
+        override fun serialize(src: ModifiedDie, typeOfSrc: Type?, context: JsonSerializationContext?): JsonElement {
+            return JsonPrimitive("${src.die.name} ${src.modifier}")
+        }
+        override fun deserialize(
+            json: JsonElement,
+            typeOfT: Type?,
+            context: JsonDeserializationContext?
+        ): ModifiedDie {
+            require(json.isJsonPrimitive)
+            val primitive = json as JsonPrimitive
+            require(primitive.isString)
+
+            val components = primitive.asString.split(" ")
+
+            val die = Die.valueOf(components.first())
+            val modifier = if (components.size > 1) {
+                components[2]
+            } else {
+                ""
+            }
+            return ModifiedDie(die, modifier)
+        }
+    }
 }
