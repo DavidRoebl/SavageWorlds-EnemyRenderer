@@ -1,13 +1,13 @@
 package dev.roebl.savageworlds.enemyrenderer.model
 
 data class Attributes(
-    val agility: Die,
-    val smarts: Die,
-    val spirit: Die,
-    val strength: Die,
-    val vigor: Die,
+    val agility: ModifiedDie,
+    val smarts: ModifiedDie,
+    val spirit: ModifiedDie,
+    val strength: ModifiedDie,
+    val vigor: ModifiedDie,
 ) {
-    fun asMap(): Map<String, Die> = sortedMapOf(
+    fun asMap(): Map<String, ModifiedDie> = sortedMapOf(
         "agility" to agility,
         "smarts" to smarts,
         "spirit" to spirit,

@@ -20,9 +20,13 @@ class ModifiedDie(
     val die: Die,
     val modifier: String
 ) {
+
+    override fun toString(): String {
+        return "${die.name} ${modifier}"
+    }
     class Serializer : JsonSerializer<ModifiedDie>, JsonDeserializer<ModifiedDie> {
         override fun serialize(src: ModifiedDie, typeOfSrc: Type?, context: JsonSerializationContext?): JsonElement {
-            return JsonPrimitive("${src.die.name} ${src.modifier}")
+            return JsonPrimitive(src.toString())
         }
         override fun deserialize(
             json: JsonElement,
@@ -37,7 +41,7 @@ class ModifiedDie(
 
             val die = Die.valueOf(components.first())
             val modifier = if (components.size > 1) {
-                components[2]
+                components[1]
             } else {
                 ""
             }
